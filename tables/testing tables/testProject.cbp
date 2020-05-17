@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="TestTables" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="Deliv/Debug/LeapYear" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Deliv/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="../include" />
+					<Add directory="../../" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="Deliv/Release/LeapYear" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Deliv/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="../../../../../../../Program Files (x86)/CodeBlocks/UnitTest++" />
+		</Compiler>
+		<Linker>
+			<Add library="../UnitTest++/Deliv/Release/libUnitTest++.a" />
+		</Linker>
+		<Unit filename="../../compilationOutput.cpp" />
+		<Unit filename="../../compilationOutput.h" />
+		<Unit filename="../include/Errortable.h" />
+		<Unit filename="../include/FieldTable.h" />
+		<Unit filename="../include/RetcodeTable.h" />
+		<Unit filename="../include/SyscTable.h" />
+		<Unit filename="../include/TagDB.h" />
+		<Unit filename="../src/Errortable.cpp" />
+		<Unit filename="../src/FieldTable.cpp" />
+		<Unit filename="../src/RetcodeTable.cpp" />
+		<Unit filename="../src/SyscTable.cpp" />
+		<Unit filename="../src/TagDB.cpp" />
+		<Unit filename="ErrorTableTest.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="FieldTableTest.cpp" />
+		<Unit filename="RetcodeTableTest.cpp" />
+		<Unit filename="SyscTableTest.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="TagDBTest.cpp" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<envvars />
+			<code_completion />
+			<lib_finder disable_auto="1" />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
