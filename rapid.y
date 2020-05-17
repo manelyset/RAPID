@@ -13,12 +13,12 @@
 #include <queue>
 #include <string>
 
-#include "SyscTable.h"
-#include "TagDB.h"
-#include "FieldTable.h"
-#include "ErrorTable.h"
-#include "RetcodeTable.h"
-#include "CompilationOutput.h"
+#include "tables/include/SyscTable.h"
+#include "tables/include/TagDB.h"
+#include "tables/include/FieldTable.h"
+#include "tables/include/ErrorTable.h"
+#include "tables/include/RetcodeTable.h"
+#include "tables/include/CompilationOutput.h"
 #include "../NAS_client/NAS_client.h"
 extern int yylex ();
 void yyerror (char const *);
