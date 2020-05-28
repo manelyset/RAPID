@@ -12,6 +12,7 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++0x" />
 					<Add option="-g" />
 					<Add directory="../include" />
 					<Add directory="../../" />
@@ -36,8 +37,10 @@
 			<Add directory="../../../../../../../Program Files (x86)/CodeBlocks/UnitTest++" />
 		</Compiler>
 		<Linker>
-			<Add library="../UnitTest++/Deliv/Release/libUnitTest++.a" />
+			<Add library="../../../../../../../Program Files (x86)/CodeBlocks/UnitTest++/Deliv/Release/libUnitTest++.a" />
 		</Linker>
+		<Unit filename="../../TreeNode.cpp" />
+		<Unit filename="../../TreeNode.h" />
 		<Unit filename="../../compilationOutput.cpp" />
 		<Unit filename="../../compilationOutput.h" />
 		<Unit filename="../include/Errortable.h" />

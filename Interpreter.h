@@ -3,6 +3,6 @@
 #include "TreeNode.h"
 #include "tables/ErrorTable.h"
 
-void interpreter (TreeNode tree, ErrorTable errorTable);
+void interpreter (TreeNode* tree, ErrorTable errorTable);
 
 #endif // INTERPRETER_H_INCLUDED

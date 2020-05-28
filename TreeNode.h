@@ -15,7 +15,7 @@ class TreeNode
 
         //void setNext(std::__cxx11::string message);
         //void setNext(std::queue<std::__cxx11::string> syscallQueue, RetcodeTable retcodeTable);
-        void setNext(TreeNode next);
+        void setNext(TreeNode* next);
         TreeNode getNext();
         std::__cxx11::string getMessage();
         RuleType getType();
@@ -30,7 +30,8 @@ class TreeNode
         std::__cxx11::string message;
         std::queue<std::__cxx11::string> syscallQueue;
         RetcodeTable retcodeTable;
-        TreeNode next;
+        TreeNode *next;
+
 };
 
 #endif // TREENODE_H

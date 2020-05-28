@@ -151,13 +151,15 @@
 1587219466 c:\users\Ханя\desktop\курсач\rapid\tables\unittest++\\reportassert.h
 	"HelperMacros.h"
 
-1588724641 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\errortable.cpp
+1590657558 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\errortable.cpp
 	"ErrorTable.h"
 	"compilationOutput.h"
+	<cstddef>
 
-1588724640 c:\users\Ханя\desktop\курсач\rapid\tables\include\errortable.h
+1590656642 c:\users\Ханя\desktop\курсач\rapid\tables\include\errortable.h
 	<map>
 	<string>
+	"TreeNode.h"
 
 1588722405 c:\users\Ханя\desktop\курсач\rapid\\compilationoutput.h
 	<string>
@@ -209,9 +211,10 @@
 1588722405 c:\users\Ханя\desktop\курсач\rapid\compilationoutput.h
 	<string>
 
-1589751554 source:c:\users\Ханя\desktop\курсач\rapid\tables\testing tables\errortabletest.cpp
+1590665031 source:c:\users\Ханя\desktop\курсач\rapid\tables\testing tables\errortabletest.cpp
 	"UnitTest++.h"
 	"ErrorTable.h"
+	"../../TreeNode.h"
 
 1589751526 source:c:\users\Ханя\desktop\курсач\rapid\tables\testing tables\retcodetabletest.cpp
 	"UnitTest++.h"
@@ -371,4 +374,18 @@
 
 1587219466 c:\program files (x86)\codeblocks\unittest++\reportassert.h
 	"HelperMacros.h"
+
+1590667641 c:\users\Ханя\desktop\курсач\rapid\\treenode.h
+	<queue>
+	"RuleType.h"
+	"RetcodeTable.h"
+
+1590605388 c:\users\Ханя\desktop\курсач\rapid\\ruletype.h
+
+1590667641 c:\users\Ханя\desktop\курсач\rapid\treenode.h
+	<queue>
+	"RuleType.h"
+	"RetcodeTable.h"
+
+1590605388 c:\users\Ханя\desktop\курсач\rapid\ruletype.h
 

@@ -82,9 +82,9 @@ error: ERROR IDENTIFIER '{' rules_list '}' { generalErrorTable.insertError($2, $
 
 command: COMMAND IDENTIFIER '{' rules_list '}' {generalCommandTable.insertCommand($2, $4.first)}
 			
-rules_list:   rule  {$$ = std::make_pair($1, $1);}
+rules_list:   rule  {$$ = std::make_pair((*$1), (*$1));}
 			| rules_list rule {
-				$1.second.setNext($2);
+				(*$1.second).setNext($2);
 				$1.second = $1.second.getNext();
 				$$ = $1;
 			} 
