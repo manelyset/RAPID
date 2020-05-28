@@ -20,6 +20,10 @@
 #include "tables/include/RetcodeTable.h"
 #include "tables/include/CompilationOutput.h"
 #include "../NAS_client/NAS_client.h"
+#include "TreeNode.h"
+#include "RuleType.h"
+#include "CommandTable.h"
+#include "Interpreter.h"
 extern int yylex ();
 void yyerror (char const *);
 %}
@@ -27,6 +31,7 @@ void yyerror (char const *);
 TagDB database;
 SyscTable generalSyscallTable;
 ErrorTable generalErrorTable;
+CommandTable generalCommandTable;
 
 %token IDENTIFIER
 %token DEC_NUM
@@ -43,64 +48,55 @@ ErrorTable generalErrorTable;
 %type field_list
 %type tag_list
 %type error_list
+%type rules_list
+%type rule
  
 %glr-parser
 %%
 syscall: 
 		SYSCALL IDENTIFIER '{' field_list '}' tag_list {  
 			generalSyscallTable.insertSyscall ($2, $4);
-			for (vector<string>::iterator it = $6.begin(); it < $6.end(); it++) {
+			for (std::vector<std::__cxx11::string>::iterator it = $6.begin(); it < $6.end(); it++) {
 				database.insertSyscallTag (*it, $2);
 			}
 		}
 		
-tag_list:       { $$ = new vector<string>; } 
+tag_list:       { $$ = new std::vector<std::__cxx11::string>; } 
 				| tag_list TAG { $1.push_back($2); }
 				
 field_list: { $$ = new FieldTable(); }
 			| field_list IDENTIFIER '[' DEC_NUM ']' ';' tag_list {
 				$1.insertField ($2, $4);
-				for (vector<string>::iterator it = $6.begin(); it < $6.end(); it++) {
+				for (std::vector<std::__cxx11::string>::iterator it = $6.begin(); it < $6.end(); it++) {
 				database.insertFieldTag (*it, $2);
 			}
 			
 			| field_list IDENTIFIER '[' DEC_NUM ']' '=' HEX_NUM ';' tag_list {
 				$1.insertField ($2, $4, $7);
-				for (vector<string>::iterator it = $8.begin(); it < $8.end(); it++) {
+				for (std::vector<std::__cxx11::string>::iterator it = $8.begin(); it < $8.end(); it++) {
 				database.insertFieldTag (*it, $2);
 			}
 			
 			
-error: ERROR IDENTIFIER '{' STRING '}' { generalErrorTable.insertError($2, $4); }
+error: ERROR IDENTIFIER '{' rules_list '}' { generalErrorTable.insertError($2, $4.first); }
 
-command: COMMAND IDENTIFIER '{' rules_list '}' {
-								if ($4 == 0)
-									successMessage();
-							}
-rules_list: | rules_list rule {$$ = $2} //TODO
-
-rule:	DO IDENTIFIER field_assignment_list error_list ';' {
-			SyscTable callingTable = database.getSyscalls($2);
-			queue<string> syscallQueue = callingTable.makeRequestQueue();
-			string answer, errorId;
-			int retcode = 0;
-			while (!syscallQueue.empty() && retcode == 0) {
-				answer = nasclient::send_command(syscallQueue.front(), SERVER_IP, SERVER_PORT); 
-				syscallQueue.pop()
-				retcode = stoi(answer.substr(4, 4), 0, 16); 
+command: COMMAND IDENTIFIER '{' rules_list '}' {generalCommandTable.insertCommand($2, $4.first)}
+			
+rules_list:   rule  {$$ = std::make_pair($1, $1);}
+			| rules_list rule {
+				$1.second.setNext($2);
+				$1.second = $1.second.getNext();
+				$$ = $1;
 			} 
 
-			if (retcode != 0) {
-				errorId = $4.getId(retcode);
-				if (errorId == "0") {
-					badRetcodeError (retcode);
-				}
-				else {
-					userError (generalErrorTable.getMessage(errorId));
-				}
-			}
-			$$ = retcode;
-		}	
+rule:	  DO IDENTIFIER field_assignment_list error_list ';' {
+			SyscTable callingTable = database.getSyscalls($2);
+			std::queue<string> syscallQueue = callingTable.makeRequestQueue();
+			$$ = TreeNode(syscallQueue, $4);
+		}
+		| PRINT STRING {
+			$$ = TreeNode($2);
+		}
 			
 		
 error_list:

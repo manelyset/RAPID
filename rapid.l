@@ -29,7 +29,6 @@
 "="                 return '=';
 "\""                return '"';
 "//"[^\n]*"\n"      return COMMENT;
-"/*"[^"*/"]*"*/"    return COMMENT;
-\"[^\"]\"           return STRING;
+\"[^\"]\"           {yylval.val = yytext; return STRING;}
 <<EOF>>             ; 
 %%

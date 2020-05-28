@@ -3,19 +3,20 @@
 
 #include <map>
 #include <string>
+#include "TreeNode.h"
 
 class ErrorTable
 {
     public:
         ErrorTable();
         virtual ~ErrorTable();
-        void insertError (std::__cxx11::string error_id, std::__cxx11::string error_message);
-        std::__cxx11::string getMessage (std::__cxx11::string error_id);
+        void insertError (std::__cxx11::string error_id, TreeNode tree);
+        TreeNode getTree (std::__cxx11::string error_id);
 
     protected:
 
     private:
-        std::map <std::__cxx11::string, std::__cxx11::string> table;
+        std::map <std::__cxx11::string, TreeNode> table;
 
 };
 

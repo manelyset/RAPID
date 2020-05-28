@@ -1,0 +1,6 @@
+#ifndef RULETYPE_H_INCLUDED
+#define RULETYPE_H_INCLUDED
+enum RuleType {PRINT, DO};
+
+
+#endif // RULETYPE_H_INCLUDED

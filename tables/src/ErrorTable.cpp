@@ -13,23 +13,23 @@ ErrorTable::~ErrorTable()
     //dtor
 }
 
-string ErrorTable::getMessage(string error_id) {
-    map<string, string>::iterator it  = table.find(error_id);
+TreeNode ErrorTable::getTree(string error_id) {
+    map<string, TreeNode>::iterator it  = table.find(error_id);
     if (it == table.end()) {
         runtimeError("0002\tError "+error_id+" not initialized");
-        return "0";
+        return nullptr;
     }
 
     return it->second;
 }
 
-void ErrorTable::insertError(string error_id, string error_message) {
-    map<string, string>::iterator it  = table.find(error_id);
+void ErrorTable::insertError(string error_id, TreeNode tree) {
+    map<string, TreeNode>::iterator it  = table.find(error_id);
     if (it != table.end()) {
         runtimeError("0001\tMultiple error definitions:" + error_id);
     }
     else {
-        table.insert({error_id, error_message});
+        table.insert({error_id, tree});
     }
 
 }
