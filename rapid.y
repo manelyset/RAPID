@@ -19,12 +19,12 @@
 #include "tables/include/FieldTable.h"
 #include "tables/include/ErrorTable.h"
 #include "tables/include/RetcodeTable.h"
-#include "сompilationOutput.h"
-#include "userOutput.h"
+#include "output/сompilationOutput.h"
+#include "output/userOutput.h"
 #include "../NAS_client/NAS_client.h"
-#include "TreeNode.h"
-#include "RuleType.h"
-#include "CommandTable.h"
+#include "tree/TreeNode.h"
+#include "tree/RuleType.h"
+#include "tree/CommandTable.h"
 #include "Interpreter.h"
 extern int yylex ();
 void yyerror (char const *);
@@ -115,7 +115,14 @@ field_assignment_list:
 int main ()
 {
   yydebug=1;
+  std::__cxx11::string command = "start";
+  userLog.open();
   yyparse ();
+  while (command != end) {
+	interpreter(command, generalCommandTable, generalErrorTable);
+	std::cin >> command;
+  }
+  userLog.close();
   return 0;
 }
 void yyerror (char const *s)

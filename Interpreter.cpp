@@ -1,8 +1,12 @@
 #include "../NAS_client/NAS_client.h"
 #include "tree/TreeNode.h"
 #include "tree/RuleType.h"
+#include "tree/CommandTable.h"
 #include "tables/include/ErrorTable.h"
 #include "output/compilationOutput.h"
+#include "output/userOutput.h"
+
+using namespace std;
 
 int sendSyscalls (queue<string> syscallQueue) {
     string answer, errorId;
@@ -15,7 +19,7 @@ int sendSyscalls (queue<string> syscallQueue) {
     return retcode;
 }
 
-void interpreter (TreeNode* tree, ErrorTable errorTable) {
+void treeInterpreter (TreeNode* tree, ErrorTable errorTable) {
     if (tree == nullptr)
         return;
     RuleType type = (*tree).getType();
@@ -34,6 +38,11 @@ void interpreter (TreeNode* tree, ErrorTable errorTable) {
             interpreter(newTree, errorTable);
         }
     }
+}
+
+void interpreter (string command, CommandTable commandTable, ErrorTable errorTable) {
+	TreeNode* tree = commandTable.getTree(command);
+	treeInterpreter (tree, errorTable);
 }
 
 
