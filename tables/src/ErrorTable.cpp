@@ -1,5 +1,5 @@
-#include "ErrorTable.h"
-#include "compilationOutput.h"
+#include "../include/ErrorTable.h"
+#include "../../output/compilationOutput.h"
 #include <cstddef>
 
 using namespace std;
@@ -17,7 +17,7 @@ ErrorTable::~ErrorTable()
 TreeNode* ErrorTable::getTree(string error_id) {
     map<string, TreeNode*>::iterator it  = table.find(error_id);
     if (it == table.end()) {
-        runtimeError("0002\tError "+error_id+" not initialized");
+        compilationError("0002\tError "+error_id+" not initialized");
         return nullptr;
     }
 
@@ -27,7 +27,7 @@ TreeNode* ErrorTable::getTree(string error_id) {
 void ErrorTable::insertError(string error_id, TreeNode* tree) {
     map<string, TreeNode*>::iterator it  = table.find(error_id);
     if (it != table.end()) {
-        runtimeError("0001\tMultiple error definitions:" + error_id);
+        compilationError("0001\tMultiple error definitions:" + error_id);
     }
     else {
         table.insert({error_id, tree});

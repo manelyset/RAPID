@@ -1,5 +1,5 @@
 #include "TreeNode.h"
-#include "RetcodeTable.h"
+#include "../tables/includeRetcodeTable.h"
 #include "RuleType.h"
 using namespace std;
 
@@ -8,14 +8,16 @@ TreeNode::TreeNode()
     //ctor
 }
 
-TreeNode::TreeNode(std::__cxx11::string message){
+TreeNode::TreeNode(std::__cxx11::string message, ofstream& logFile){
     this->type = PRINT;
     this->message = message;
+    this->logFile = logFile;
 }
-TreeNode::TreeNode(std::queue<std::__cxx11::string> syscallQueue, RetcodeTable retcodeTable){
+TreeNode::TreeNode(std::queue<std::__cxx11::string> syscallQueue, RetcodeTable retcodeTable, ofstream& logFile){
     this->type = DO;
     this->syscallQueue = syscallQueue;
     this->retcodeTable = retcodeTable;
+    this->logFile = logFile;
 }
 
 TreeNode::~TreeNode()

@@ -1,7 +1,7 @@
-#include "TagDB.h"
+#include "../include/TagDB.h"
 #include <map>
-#include "SyscTable.h"
-#include "FieldTable.h"
+#include "../include/SyscTable.h"
+#include "../include/FieldTable.h"
 #include <iostream>
 
 using namespace std;

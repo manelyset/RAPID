@@ -12,13 +12,15 @@
 #include <iterator>
 #include <queue>
 #include <string>
+#include <fstream>
 
 #include "tables/include/SyscTable.h"
 #include "tables/include/TagDB.h"
 #include "tables/include/FieldTable.h"
 #include "tables/include/ErrorTable.h"
 #include "tables/include/RetcodeTable.h"
-#include "tables/include/CompilationOutput.h"
+#include "сompilationOutput.h"
+#include "userOutput.h"
 #include "../NAS_client/NAS_client.h"
 #include "TreeNode.h"
 #include "RuleType.h"
@@ -32,6 +34,7 @@ TagDB database;
 SyscTable generalSyscallTable;
 ErrorTable generalErrorTable;
 CommandTable generalCommandTable;
+ofstream userLog ("userLog.txt");
 
 %token IDENTIFIER
 %token DEC_NUM
@@ -92,15 +95,15 @@ rules_list:   rule  {$$ = std::make_pair((*$1), (*$1));}
 rule:	  DO IDENTIFIER field_assignment_list error_list ';' {
 			SyscTable callingTable = database.getSyscalls($2);
 			std::queue<string> syscallQueue = callingTable.makeRequestQueue();
-			$$ = TreeNode(syscallQueue, $4);
+			$$ = TreeNode(syscallQueue, $4, userLog);
 		}
 		| PRINT STRING {
-			$$ = TreeNode($2);
+			$$ = TreeNode($2, userLog);
 		}
 			
 		
 error_list:
-		| ','  { $$ = new RetcodeTable(); }
+		| ','  { $$ = new RetcodeTable(userLog); }
 		| error_list ',' ERROR '=' HEX_NUM ',' IDENTIFIER { $1.insertRetcode(stoi($5, NULL, 16), $7); }
 		
 field_assignment_list: 
@@ -112,7 +115,8 @@ field_assignment_list:
 int main ()
 {
   yydebug=1;
-  return yyparse ();
+  yyparse ();
+  return 0;
 }
 void yyerror (char const *s)
 {

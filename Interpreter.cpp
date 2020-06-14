@@ -1,8 +1,8 @@
 #include "../NAS_client/NAS_client.h"
-#include "TreeNode.h"
-#include "RuleType.h"
-#include "tables/ErrorTable.h"
-#include "CompilationOutput.h"
+#include "tree/TreeNode.h"
+#include "tree/RuleType.h"
+#include "tables/include/ErrorTable.h"
+#include "output/compilationOutput.h"
 
 int sendSyscalls (queue<string> syscallQueue) {
     string answer, errorId;

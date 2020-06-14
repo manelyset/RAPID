@@ -2,15 +2,16 @@
 #define TREENODE_H
 
 #include <queue>
+#include <fstream>
 #include "RuleType.h"
-#include "RetcodeTable.h"
+#include "../tables/includeRetcodeTable.h"
 
 class TreeNode
 {
     public:
         TreeNode();
-        TreeNode(std::__cxx11::string message);
-        TreeNode(std::queue<std::__cxx11::string> syscallQueue, RetcodeTable retcodeTable);
+        TreeNode(std::__cxx11::string message, std::ofstream& logFile);
+        TreeNode(std::queue<std::__cxx11::string> syscallQueue, RetcodeTable retcodeTable, std::ofstream& logFile);
         virtual ~TreeNode();
 
         //void setNext(std::__cxx11::string message);
@@ -31,6 +32,7 @@ class TreeNode
         std::queue<std::__cxx11::string> syscallQueue;
         RetcodeTable retcodeTable;
         TreeNode *next;
+        std::ofstream logFile;
 
 };
 

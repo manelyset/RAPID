@@ -3,7 +3,7 @@
 
 #include <map>
 #include <string>
-#include "TreeNode.h"
+#include "../../tree/TreeNode.h"
 
 class ErrorTable
 {

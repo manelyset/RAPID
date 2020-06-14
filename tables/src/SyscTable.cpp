@@ -1,6 +1,6 @@
-#include "SyscTable.h"
-#include "FieldTable.h"
-#include "compilationOutput.h"
+#include "../include/SyscTable.h"
+#include "../include/FieldTable.h"
+#include "../../output/compilationOutput.h"
 
 using namespace std;
 
@@ -17,7 +17,7 @@ SyscTable::~SyscTable()
 
 void SyscTable::insertSyscall(string sysc_id, FieldTable field_table) {
     if (isAdded(sysc_id)) {
-        runtimeError("0001\tMultiple syscall definitions: " + sysc_id);
+        compilationError("0001\tMultiple syscall definitions: " + sysc_id);
     }
     else {
         table.insert({sysc_id, field_table});
@@ -26,7 +26,7 @@ void SyscTable::insertSyscall(string sysc_id, FieldTable field_table) {
 
 FieldTable SyscTable::getFieldTable(string sysc_id) {
         if (!isAdded(sysc_id)) {
-            runtimeError("0002\tSyscall" + sysc_id + "not initialized");
+            compilationError("0002\tSyscall" + sysc_id + "not initialized");
             return FieldTable();
         }
         else {

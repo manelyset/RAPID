@@ -1,5 +1,5 @@
-#include "FieldTable.h"
-#include "compilationOutput.h"
+#include "../include/FieldTable.h"
+#include "../../output/compilationOutput.h"
 #include <iostream>
 
 using namespace std;
@@ -27,7 +27,7 @@ vector<field_info>::iterator FieldTable::findFieldID(string ID) {
 void FieldTable::insertField (string field_id, int field_size) {
     vector<field_info>::iterator it  = findFieldID(field_id);
     if (it != table.end()) {
-        runtimeError("0001\tMultiple field definitions in one syscall: " + field_id);
+        compilationError("0001\tMultiple field definitions in one syscall: " + field_id);
     }
     else {
         table.push_back(field_info(field_id, field_size));
@@ -38,7 +38,7 @@ void FieldTable::insertField (string field_id, int field_size) {
 void FieldTable::insertField(string field_id, int field_size, string value) {
     vector<field_info>::iterator it  = findFieldID(field_id);
     if (it != table.end()) {
-        runtimeError("0001\tMultiple field definitions in one syscall: " + field_id);
+        compilationError("0001\tMultiple field definitions in one syscall: " + field_id);
     }
     else {
         field_info *fi = new field_info(field_id, field_size);
@@ -61,7 +61,7 @@ void FieldTable::insertField(string field_id, int field_size, string value) {
 void FieldTable::setValue(string field_id, string value) {
     vector<field_info>::iterator it  = findFieldID(field_id);
     if (it == table.end()) {
-        runtimeError("0002\tField " + field_id + "not initialized");
+        compilationError("0002\tField " + field_id + "not initialized");
     }
     else {
         int valueLength = value.length();

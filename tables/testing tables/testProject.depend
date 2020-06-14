@@ -151,7 +151,7 @@
 1587219466 c:\users\Ханя\desktop\курсач\rapid\tables\unittest++\\reportassert.h
 	"HelperMacros.h"
 
-1590657558 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\errortable.cpp
+1592126688 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\errortable.cpp
 	"ErrorTable.h"
 	"compilationOutput.h"
 	<cstddef>
@@ -161,18 +161,19 @@
 	<string>
 	"TreeNode.h"
 
-1588722405 c:\users\Ханя\desktop\курсач\rapid\\compilationoutput.h
+1592127216 c:\users\Ханя\desktop\курсач\rapid\\compilationoutput.h
 	<string>
 
 1588722405 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\retcodetable.cpp
 	"RetcodeTable.h"
 	"compilationOutput.h"
 
-1588719565 c:\users\Ханя\desktop\курсач\rapid\tables\include\retcodetable.h
+1592128399 c:\users\Ханя\desktop\курсач\rapid\tables\include\retcodetable.h
 	<map>
 	<string>
+	<fstream>
 
-1589748749 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\fieldtable.cpp
+1592127216 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\fieldtable.cpp
 	"FieldTable.h"
 	"compilationOutput.h"
 	<iostream>
@@ -181,7 +182,7 @@
 	<vector>
 	<string>
 
-1589749497 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\sysctable.cpp
+1592127216 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\sysctable.cpp
 	"SyscTable.h"
 	"FieldTable.h"
 	"compilationOutput.h"
@@ -204,11 +205,11 @@
 	<string>
 	"SyscTable.h"
 
-1588725238 source:c:\users\Ханя\desktop\курсач\rapid\compilationoutput.cpp
+1592127104 source:c:\users\Ханя\desktop\курсач\rapid\compilationoutput.cpp
 	<iostream>
 	"compilationOutput.h"
 
-1588722405 c:\users\Ханя\desktop\курсач\rapid\compilationoutput.h
+1592127216 c:\users\Ханя\desktop\курсач\rapid\compilationoutput.h
 	<string>
 
 1590665031 source:c:\users\Ханя\desktop\курсач\rapid\tables\testing tables\errortabletest.cpp
@@ -375,17 +376,40 @@
 1587219466 c:\program files (x86)\codeblocks\unittest++\reportassert.h
 	"HelperMacros.h"
 
-1590667641 c:\users\Ханя\desktop\курсач\rapid\\treenode.h
+1592128399 c:\users\Ханя\desktop\курсач\rapid\\treenode.h
 	<queue>
+	<fstream>
 	"RuleType.h"
 	"RetcodeTable.h"
 
 1590605388 c:\users\Ханя\desktop\курсач\rapid\\ruletype.h
 
-1590667641 c:\users\Ханя\desktop\курсач\rapid\treenode.h
+1592128399 c:\users\Ханя\desktop\курсач\rapid\treenode.h
 	<queue>
+	<fstream>
 	"RuleType.h"
 	"RetcodeTable.h"
 
 1590605388 c:\users\Ханя\desktop\курсач\rapid\ruletype.h
+
+1590667655 source:c:\users\Ханя\desktop\курсач\rapid\treenode.cpp
+	"TreeNode.h"
+	"RetcodeTable.h"
+	"RuleType.h"
+
+1592126688 source:c:\users\Ханя\desktop\курсач\rapid\commandtable.cpp
+	"TreeNode.h"
+	"CommandTable.h"
+	"compilationOutput.h"
+
+1590656571 c:\users\Ханя\desktop\курсач\rapid\commandtable.h
+
+1592127161 source:c:\users\Ханя\desktop\курсач\rapid\useroutput.cpp
+	"UserOutput.h"
+	<string>
+	<fstream>
+
+1592127335 c:\users\Ханя\desktop\курсач\rapid\useroutput.h
+	<string>
+	<fstream>
 
