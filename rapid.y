@@ -95,15 +95,15 @@ rules_list:   rule  {$$ = std::make_pair((*$1), (*$1));}
 rule:	  DO IDENTIFIER field_assignment_list error_list ';' {
 			SyscTable callingTable = database.getSyscalls($2);
 			std::queue<string> syscallQueue = callingTable.makeRequestQueue();
-			$$ = TreeNode(syscallQueue, $4, userLog);
+			$$ = TreeNode(syscallQueue, $4);
 		}
 		| PRINT STRING {
-			$$ = TreeNode($2, userLog);
+			$$ = TreeNode($2);
 		}
 			
 		
 error_list:
-		| ','  { $$ = new RetcodeTable(userLog); }
+		| ','  { $$ = new RetcodeTable(); }
 		| error_list ',' ERROR '=' HEX_NUM ',' IDENTIFIER { $1.insertRetcode(stoi($5, NULL, 16), $7); }
 		
 field_assignment_list: 
@@ -116,13 +116,11 @@ int main ()
 {
   yydebug=1;
   std::__cxx11::string command = "start";
-  userLog.open();
   yyparse ();
   while (command != end) {
 	interpreter(command, generalCommandTable, generalErrorTable);
 	std::cin >> command;
   }
-  userLog.close();
   return 0;
 }
 void yyerror (char const *s)

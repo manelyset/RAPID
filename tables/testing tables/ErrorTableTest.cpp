@@ -1,6 +1,6 @@
 #include "UnitTest++.h"
 #include "ErrorTable.h"
-#include "../../TreeNode.h"
+#include "../../tree/TreeNode.h"
 
 namespace {
     ErrorTable errorTable;

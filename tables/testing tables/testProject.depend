@@ -151,41 +151,43 @@
 1587219466 c:\users\Ханя\desktop\курсач\rapid\tables\unittest++\\reportassert.h
 	"HelperMacros.h"
 
-1592126688 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\errortable.cpp
-	"ErrorTable.h"
-	"compilationOutput.h"
+1592129584 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\errortable.cpp
+	"../include/ErrorTable.h"
+	"../../output/compilationOutput.h"
 	<cstddef>
 
-1590656642 c:\users\Ханя\desktop\курсач\rapid\tables\include\errortable.h
+1592129463 c:\users\Ханя\desktop\курсач\rapid\tables\include\errortable.h
 	<map>
 	<string>
-	"TreeNode.h"
+	"../../tree/TreeNode.h"
 
 1592127216 c:\users\Ханя\desktop\курсач\rapid\\compilationoutput.h
 	<string>
 
-1588722405 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\retcodetable.cpp
-	"RetcodeTable.h"
-	"compilationOutput.h"
+1592135425 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\retcodetable.cpp
+	"../include/RetcodeTable.h"
+	"../../output/compilationOutput.h"
+	"../../output/userOutput.h"
+	<fstream>
 
-1592128399 c:\users\Ханя\desktop\курсач\rapid\tables\include\retcodetable.h
+1592134393 c:\users\Ханя\desktop\курсач\rapid\tables\include\retcodetable.h
 	<map>
 	<string>
 	<fstream>
 
-1592127216 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\fieldtable.cpp
-	"FieldTable.h"
-	"compilationOutput.h"
+1592129567 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\fieldtable.cpp
+	"../include/FieldTable.h"
+	"../../output/compilationOutput.h"
 	<iostream>
 
 1589748670 c:\users\Ханя\desktop\курсач\rapid\tables\include\fieldtable.h
 	<vector>
 	<string>
 
-1592127216 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\sysctable.cpp
-	"SyscTable.h"
-	"FieldTable.h"
-	"compilationOutput.h"
+1592129528 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\sysctable.cpp
+	"../include/SyscTable.h"
+	"../include/FieldTable.h"
+	"../../output/compilationOutput.h"
 
 1589749288 c:\users\Ханя\desktop\курсач\rapid\tables\include\sysctable.h
 	<map>
@@ -193,11 +195,11 @@
 	<queue>
 	"FieldTable.h"
 
-1589753948 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\tagdb.cpp
-	"TagDB.h"
+1592129511 source:c:\users\Ханя\desktop\курсач\rapid\tables\src\tagdb.cpp
+	"../include/TagDB.h"
 	<map>
-	"SyscTable.h"
-	"FieldTable.h"
+	"../include/SyscTable.h"
+	"../include/FieldTable.h"
 	<iostream>
 
 1589753948 c:\users\Ханя\desktop\курсач\rapid\tables\include\tagdb.h
@@ -212,10 +214,10 @@
 1592127216 c:\users\Ханя\desktop\курсач\rapid\compilationoutput.h
 	<string>
 
-1590665031 source:c:\users\Ханя\desktop\курсач\rapid\tables\testing tables\errortabletest.cpp
+1592134976 source:c:\users\Ханя\desktop\курсач\rapid\tables\testing tables\errortabletest.cpp
 	"UnitTest++.h"
 	"ErrorTable.h"
-	"../../TreeNode.h"
+	"../../tree/TreeNode.h"
 
 1589751526 source:c:\users\Ханя\desktop\курсач\rapid\tables\testing tables\retcodetabletest.cpp
 	"UnitTest++.h"
@@ -412,4 +414,33 @@
 1592127335 c:\users\Ханя\desktop\курсач\rapid\useroutput.h
 	<string>
 	<fstream>
+
+1592134503 c:\users\Ханя\desktop\курсач\rapid\tree\treenode.h
+	<queue>
+	"RuleType.h"
+	"../tables/include/RetcodeTable.h"
+
+1590605388 c:\users\Ханя\desktop\курсач\rapid\tree\ruletype.h
+
+1592127216 c:\users\Ханя\desktop\курсач\rapid\output\compilationoutput.h
+	<string>
+
+1592134930 c:\users\Ханя\desktop\курсач\rapid\output\useroutput.h
+	<string>
+
+1592127104 source:c:\users\Ханя\desktop\курсач\rapid\output\compilationoutput.cpp
+	<iostream>
+	"compilationOutput.h"
+
+1592129401 source:c:\users\Ханя\desktop\курсач\rapid\tree\commandtable.cpp
+	"TreeNode.h"
+	"CommandTable.h"
+	"../output/compilationOutput.h"
+
+1590656571 c:\users\Ханя\desktop\курсач\rapid\tree\commandtable.h
+
+1592134503 source:c:\users\Ханя\desktop\курсач\rapid\tree\treenode.cpp
+	"TreeNode.h"
+	"../tables/include/RetcodeTable.h"
+	"RuleType.h"
 

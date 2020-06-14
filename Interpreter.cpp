@@ -21,7 +21,7 @@ int sendSyscalls (queue<string> syscallQueue) {
 
 void treeInterpreter (TreeNode* tree, ErrorTable errorTable) {
     if (tree == nullptr)
-        return;
+        successMessage();
     RuleType type = (*tree).getType();
     switch(type) {
     case PRINT:

@@ -39,13 +39,15 @@
 		<Linker>
 			<Add library="../../../../../../../Program Files (x86)/CodeBlocks/UnitTest++/Deliv/Release/libUnitTest++.a" />
 		</Linker>
-		<Unit filename="../../CommandTable.cpp" />
-		<Unit filename="../../TreeNode.cpp" />
-		<Unit filename="../../TreeNode.h" />
-		<Unit filename="../../compilationOutput.cpp" />
-		<Unit filename="../../compilationOutput.h" />
-		<Unit filename="../../userOutput.cpp" />
-		<Unit filename="../../userOutput.h" />
+		<Unit filename="../../output/compilationOutput.cpp" />
+		<Unit filename="../../output/compilationOutput.h" />
+		<Unit filename="../../output/userOutput.cpp" />
+		<Unit filename="../../output/userOutput.h" />
+		<Unit filename="../../tree/CommandTable.cpp" />
+		<Unit filename="../../tree/CommandTable.h" />
+		<Unit filename="../../tree/RuleType.h" />
+		<Unit filename="../../tree/TreeNode.cpp" />
+		<Unit filename="../../tree/TreeNode.h" />
 		<Unit filename="../include/Errortable.h" />
 		<Unit filename="../include/FieldTable.h" />
 		<Unit filename="../include/RetcodeTable.h" />
