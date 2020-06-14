@@ -1,0 +1,259 @@
+Нетерминал бесполезен в грамматике
+
+   err
+   cmd
+   rules_list
+   rule
+   error_list
+   field_assignment_list
+
+
+Терминалы не используются в грамматике
+
+   STRING
+   COMMAND
+   DO
+   ERROR
+   PRINT
+   COMMENT
+   ','
+   ':'
+
+
+Правила не используются в грамматике
+
+    7 err: ERROR IDENTIFIER '{' rules_list '}'
+
+    8 cmd: COMMAND IDENTIFIER '{' rules_list '}'
+
+    9 rules_list: rule
+   10           | rules_list rule
+
+   11 rule: DO IDENTIFIER field_assignment_list error_list ';'
+   12     | PRINT STRING
+
+   13 error_list: %empty
+   14           | ','
+   15           | error_list ',' ERROR '=' HEX_NUM ',' IDENTIFIER
+
+   16 field_assignment_list: %empty
+   17                      | ':' IDENTIFIER '=' HEX_NUM
+   18                      | field_assignment_list ',' IDENTIFIER '=' HEX_NUM
+
+
+Грамматика
+
+    0 $accept: syscall $end
+
+    1 syscall: SYSCALL IDENTIFIER '{' field_list '}' tag_list
+
+    2 tag_list: %empty
+    3         | tag_list TAG
+
+    4 field_list: %empty
+    5           | field_list IDENTIFIER '[' DEC_NUM ']' ';' tag_list
+    6           | field_list IDENTIFIER '[' DEC_NUM ']' '=' HEX_NUM ';' tag_list
+
+
+Терминальные символы с правилами, в которых они появляются
+
+$end (0) 0
+',' (44)
+':' (58)
+';' (59) 5 6
+'=' (61) 6
+'[' (91) 5 6
+']' (93) 5 6
+'{' (123) 1
+'}' (125) 1
+error (256)
+IDENTIFIER (258) 1 5 6
+DEC_NUM (259) 5 6
+HEX_NUM (260) 6
+STRING (261)
+SYSCALL (262) 1
+COMMAND (263)
+DO (264)
+ERROR (265)
+PRINT (266)
+COMMENT (267)
+TAG (268) 3
+
+
+Нетерминальные символы с правилами, в которых они появляются
+
+$accept (22)
+    налево: 0
+syscall (23)
+    налево: 1, направо: 0
+tag_list (24)
+    налево: 2 3, направо: 1 3 5 6
+field_list (25)
+    налево: 4 5 6, направо: 1 5 6
+
+
+State 0
+
+    0 $accept: . syscall $end
+
+    SYSCALL  сдвиг, и переход в состояние 1
+
+    syscall  переход в состояние 2
+
+
+State 1
+
+    1 syscall: SYSCALL . IDENTIFIER '{' field_list '}' tag_list
+
+    IDENTIFIER  сдвиг, и переход в состояние 3
+
+
+State 2
+
+    0 $accept: syscall . $end
+
+    $end  сдвиг, и переход в состояние 4
+
+
+State 3
+
+    1 syscall: SYSCALL IDENTIFIER . '{' field_list '}' tag_list
+
+    '{'  сдвиг, и переход в состояние 5
+
+
+State 4
+
+    0 $accept: syscall $end .
+
+    $default  принять
+
+
+State 5
+
+    1 syscall: SYSCALL IDENTIFIER '{' . field_list '}' tag_list
+
+    $default  вывод с использованием правила 4 (field_list)
+
+    field_list  переход в состояние 6
+
+
+State 6
+
+    1 syscall: SYSCALL IDENTIFIER '{' field_list . '}' tag_list
+    5 field_list: field_list . IDENTIFIER '[' DEC_NUM ']' ';' tag_list
+    6           | field_list . IDENTIFIER '[' DEC_NUM ']' '=' HEX_NUM ';' tag_list
+
+    IDENTIFIER  сдвиг, и переход в состояние 7
+    '}'         сдвиг, и переход в состояние 8
+
+
+State 7
+
+    5 field_list: field_list IDENTIFIER . '[' DEC_NUM ']' ';' tag_list
+    6           | field_list IDENTIFIER . '[' DEC_NUM ']' '=' HEX_NUM ';' tag_list
+
+    '['  сдвиг, и переход в состояние 9
+
+
+State 8
+
+    1 syscall: SYSCALL IDENTIFIER '{' field_list '}' . tag_list
+
+    $default  вывод с использованием правила 2 (tag_list)
+
+    tag_list  переход в состояние 10
+
+
+State 9
+
+    5 field_list: field_list IDENTIFIER '[' . DEC_NUM ']' ';' tag_list
+    6           | field_list IDENTIFIER '[' . DEC_NUM ']' '=' HEX_NUM ';' tag_list
+
+    DEC_NUM  сдвиг, и переход в состояние 11
+
+
+State 10
+
+    1 syscall: SYSCALL IDENTIFIER '{' field_list '}' tag_list .
+    3 tag_list: tag_list . TAG
+
+    TAG  сдвиг, и переход в состояние 12
+
+    $default  вывод с использованием правила 1 (syscall)
+
+
+State 11
+
+    5 field_list: field_list IDENTIFIER '[' DEC_NUM . ']' ';' tag_list
+    6           | field_list IDENTIFIER '[' DEC_NUM . ']' '=' HEX_NUM ';' tag_list
+
+    ']'  сдвиг, и переход в состояние 13
+
+
+State 12
+
+    3 tag_list: tag_list TAG .
+
+    $default  вывод с использованием правила 3 (tag_list)
+
+
+State 13
+
+    5 field_list: field_list IDENTIFIER '[' DEC_NUM ']' . ';' tag_list
+    6           | field_list IDENTIFIER '[' DEC_NUM ']' . '=' HEX_NUM ';' tag_list
+
+    ';'  сдвиг, и переход в состояние 14
+    '='  сдвиг, и переход в состояние 15
+
+
+State 14
+
+    5 field_list: field_list IDENTIFIER '[' DEC_NUM ']' ';' . tag_list
+
+    $default  вывод с использованием правила 2 (tag_list)
+
+    tag_list  переход в состояние 16
+
+
+State 15
+
+    6 field_list: field_list IDENTIFIER '[' DEC_NUM ']' '=' . HEX_NUM ';' tag_list
+
+    HEX_NUM  сдвиг, и переход в состояние 17
+
+
+State 16
+
+    3 tag_list: tag_list . TAG
+    5 field_list: field_list IDENTIFIER '[' DEC_NUM ']' ';' tag_list .
+
+    TAG  сдвиг, и переход в состояние 12
+
+    $default  вывод с использованием правила 5 (field_list)
+
+
+State 17
+
+    6 field_list: field_list IDENTIFIER '[' DEC_NUM ']' '=' HEX_NUM . ';' tag_list
+
+    ';'  сдвиг, и переход в состояние 18
+
+
+State 18
+
+    6 field_list: field_list IDENTIFIER '[' DEC_NUM ']' '=' HEX_NUM ';' . tag_list
+
+    $default  вывод с использованием правила 2 (tag_list)
+
+    tag_list  переход в состояние 19
+
+
+State 19
+
+    3 tag_list: tag_list . TAG
+    6 field_list: field_list IDENTIFIER '[' DEC_NUM ']' '=' HEX_NUM ';' tag_list .
+
+    TAG  сдвиг, и переход в состояние 12
+
+    $default  вывод с использованием правила 6 (field_list)
